@@ -12,11 +12,11 @@ import java.util.Optional;
 
 public class UserDetailsRepositoryImpl implements UserDetailsRepository {
     @PersistenceContext
-    private EntityManager entityManager; // ✅ Inject EntityManager
+    private EntityManager entityManager; 
 
     @Transactional
     public void save(UserDetails userDetails) {
-        entityManager.persist(userDetails); // ✅ Now this works
+        entityManager.persist(userDetails); 
     }
     private List<UserDetails> userDetailsList = new ArrayList<>();
 
@@ -35,7 +35,6 @@ public class UserDetailsRepositoryImpl implements UserDetailsRepository {
         userDetailsList.remove(userDetails);
     }
 
-    // ✅ Implementing `findByEmail`
     @Override
     public Optional<UserDetails> findByEmail(String email) {
         return userDetailsList.stream()
