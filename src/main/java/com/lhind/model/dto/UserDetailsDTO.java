@@ -1,7 +1,5 @@
 package com.lhind.model.dto;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-
 public class UserDetailsDTO {
 
     private Integer id;

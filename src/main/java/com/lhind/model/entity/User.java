@@ -1,5 +1,6 @@
 package com.lhind.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,17 +9,18 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
-    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "role", nullable = false)
     private String role;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "user_details_id", referencedColumnName = "id")
+    @JsonManagedReference  // Controls serialization
+    private UserDetails userDetails;
 
     public Integer getId() {
         return id;
@@ -52,14 +54,11 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+    public UserDetails getUserDetails() {
+        return userDetails;
     }
 
-
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
 }

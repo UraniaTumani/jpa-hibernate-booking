@@ -2,7 +2,9 @@ package com.lhind.model.entity;
 
 import com.lhind.model.enums.BookingStatus;
 import jakarta.persistence.*;
-import java.util.Date;
+import org.springframework.http.ResponseEntity;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "booking")
@@ -10,39 +12,37 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "booking_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date bookingDate;
+    private LocalDate bookingDate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)  // Store as a String in the database
     @Column(name = "status", nullable = false)
     private BookingStatus status;
 
-    // Constructors
-    public Booking() {}
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    public Booking(Date bookingDate, BookingStatus status) {
-        this.bookingDate = bookingDate;
-        this.status = status;
-    }
+    @ManyToOne
+    @JoinColumn(name = "flight_id", nullable = false)
+    private Flight flight;
 
-    // Getters and Setters
-    public Integer getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getBookingDate() {
+    public LocalDate getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(LocalDate bookingDate) {
         this.bookingDate = bookingDate;
     }
 
@@ -54,12 +54,21 @@ public class Booking {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Booking{" +
-                "id=" + id +
-                ", bookingDate=" + bookingDate +
-                ", status=" + status +
-                '}';
+    public User getUser() {
+        return user;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+
+
 }

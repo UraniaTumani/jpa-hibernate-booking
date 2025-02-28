@@ -1,44 +1,53 @@
 package com.lhind.main;
 
-import com.lhind.model.entity.Booking;
+import com.lhind.model.entity.User;
 import com.lhind.model.entity.UserDetails;
-import com.lhind.model.enums.BookingStatus;
-import com.lhind.repository.BookingRepository;
-import com.lhind.repository.UserDetailsRepository;
-import com.lhind.repository.UserRepository;
-import com.lhind.repository.impl.BookingRepositoryImpl;
-import com.lhind.repository.impl.UserDetailsRepositoryImpl;
-import com.lhind.repository.impl.UserRepositoryImpl;
-import com.lhind.service.BookingService;
-import com.lhind.service.impl.BookingServiceImpl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-
 public class Main {
         public static void main(String[] args) {
 
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
-            EntityManager entityManager = emf.createEntityManager();
+           // EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+            //EntityManager entityManager = emf.createEntityManager();
 
 
-            entityManager.getTransaction().begin();
+            //entityManager.getTransaction().begin();
 
 
-            UserDetails userDetails = new UserDetails("uraniatumani4@gmail.com", "Doe", "gygyg","123456789");
-            entityManager.persist(userDetails);
+           // UserDetails userDetails = new UserDetails("uraniatumani4@gmail.com", "Doe", "gygyg","123456789");
+            //entityManager.persist(userDetails);
 
 
-            entityManager.getTransaction().commit();
+            //entityManager.getTransaction().commit();
 
-            System.out.println("UserDetails saved!");
+           // System.out.println("UserDetails saved!");
 
 
-            entityManager.close();
-            emf.close();
-        }
-}
+
+            //User user = new User();
+            //user.setUsername("urania_tumani");
+            //user.setPassword("secure1232");
+            //user.setRole("USER");
+
+            //entityManager.persist(user);
+
+
+            //UserDetails userDetails = new UserDetails();
+            //userDetails.setFirstName("Urania");
+            //userDetails.setLastName("Tumani");
+            //userDetails.setEmail("tumaniurania@example.com");
+            //userDetails.setPhoneNumber("124456789");
+            //userDetails.setUser(user);
+
+            //entityManager.persist(userDetails);
+
+            //entityManager.getTransaction().commit();
+
+            //System.out.println("User and UserDetails saved successfully!");
+
+            //entityManager.close();
+            //emf.close();
+        }}
+

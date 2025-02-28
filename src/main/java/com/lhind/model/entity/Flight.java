@@ -1,6 +1,9 @@
 package com.lhind.model.entity;
 
+import com.lhind.model.enums.FlightStatus;
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -24,16 +27,15 @@ public class Flight {
     @Column(name = "flight_number", unique = true, nullable = false)
     private String flightNumber;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "departure_date", nullable = false)
-    private Date departureDate;
+    private LocalDateTime departureDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "arrival_date", nullable = false)
-    private Date arrivalDate;
+    private LocalDateTime arrivalDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private String status;
+    private FlightStatus status;
 
     public Integer getId() {
         return id;
@@ -75,27 +77,27 @@ public class Flight {
         this.flightNumber = flightNumber;
     }
 
-    public Date getDepartureDate() {
+    public LocalDateTime getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(Date departureDate) {
+    public void setDepartureDate(LocalDateTime departureDate) {
         this.departureDate = departureDate;
     }
 
-    public Date getArrivalDate() {
+    public LocalDateTime getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(Date arrivalDate) {
+    public void setArrivalDate(LocalDateTime arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public String getStatus() {
+    public FlightStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(FlightStatus status) {
         this.status = status;
     }
 

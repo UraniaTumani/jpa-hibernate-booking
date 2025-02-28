@@ -1,6 +1,13 @@
 package com.lhind.repository;
 
 import com.lhind.model.entity.Booking;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface BookingRepository extends Repository<Booking, Integer> {
+import java.util.List;
+
+@Repository
+public interface BookingRepository extends JpaRepository<Booking, Long> {
+    List<Booking> findByUserId(Long userId);
+    List<Booking> findByFlightId(Long flightId);
 }
